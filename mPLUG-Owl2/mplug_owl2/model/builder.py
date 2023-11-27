@@ -103,7 +103,7 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
         else:
             use_fast = False
             tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False)
-            model = AutoModelForCausalLM.from_pretrained(model_path, low_cpu_mem_usage=True, **kwargs)
+            model = AutoModelForCausalLM.from_pretrained(model_path, offload_state_dict = True, offload_folder = "offload", low_cpu_mem_usage=True, **kwargs)
 
 
     vision_tower = model.get_model().vision_model
